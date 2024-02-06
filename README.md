@@ -1,5 +1,5 @@
-## Next.js App Router Course - Starter
+## DeferAlly 1031 Exchange Demo
 
-This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application.
+This is the Testing ground for DeferAlly Demo
 
-For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
+For more information, see the [NextJS Tutorial](https://nextjs.org/learn/dashboard-app) on the Next.js Website.

@@ -7,6 +7,13 @@ export type User = {
   name: string;
   email: string;
   password: string;
+  phone?: string;
+  company?: string;
+  role?: Role;
+};
+
+export type Role = {
+  type: 'QI' | 'Wealth Manager' | 'Real Estate Broker' | 'Investor' | 'Lawyer' | 'CPA' | 'Financial Advisor' | 'Other';
 };
 
 export type Customer = {
