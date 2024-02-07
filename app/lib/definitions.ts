@@ -10,6 +10,21 @@ export type User = {
   phone?: string;
   company?: string;
   role?: Role;
+  qi_id?: string;
+};
+
+export type ExchangeUser = {
+  user_id: string;
+  exchange_id: string;
+  qi_id: string;
+};
+
+
+export type QiCompany = {
+  id: string;
+  company: string;
+  address?: string;
+  image_url?: string;
 };
 
 export type Role = {
@@ -21,6 +36,15 @@ export type Customer = {
   name: string;
   email: string;
   image_url: string;
+};
+
+export type Exchange = {
+  id: string;
+  exchange_number: string;
+  qi_id: string;
+  start_date: string;
+  end_date?: string;
+  status: 'active' | 'completed';
 };
 
 export type Invoice = {

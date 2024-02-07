@@ -4,6 +4,8 @@ const {
   customers,
   revenue,
   users,
+  exchanges,
+  exchangeUser,
 } = require('../app/lib/placeholder-data.js');
 const bcrypt = require('bcrypt');
 
@@ -15,8 +17,12 @@ async function seedUsers(client) {
       CREATE TABLE IF NOT EXISTS users (
         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
-        email TEXT NOT NULL UNIQUE,
-        password TEXT NOT NULL
+        phone VARCHAR(255) NULL,
+        company VARCHAR(255) NULL,
+        role VARCHAR(255) NOT NULL DEFAULT 'other',
+        email VARCHAR(255) NOT NULL UNIQUE,
+        password TEXT NOT NULL,
+        qi_id VARCHAR(60) NULL
       );
     `;
 
@@ -27,8 +33,8 @@ async function seedUsers(client) {
       users.map(async (user) => {
         const hashedPassword = await bcrypt.hash(user.password, 10);
         return client.sql`
-        INSERT INTO users (id, name, email, password)
-        VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
+        INSERT INTO users (id, name, phone, company, role, email, password, qi_id)
+        VALUES (${user.id}, ${user.name},${user.phone},${user.company},${user.role}, ${user.email}, ${hashedPassword}, ${user.qi_id})
         ON CONFLICT (id) DO NOTHING;
       `;
       }),
@@ -82,6 +88,82 @@ async function seedInvoices(client) {
     };
   } catch (error) {
     console.error('Error seeding invoices:', error);
+    throw error;
+  }
+}
+
+async function seedexchanges(client) {
+  try {
+    await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+    // Create the "exchanges" table if it doesn't exist
+    const createTable = await client.sql`
+      CREATE TABLE IF NOT EXISTS exchanges (
+        id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+        exchange_id VARCHAR(255) NOT NULL,
+        qi_id VARCHAR(255) NOT NULL,
+        start_date VARCHAR(255) NOT NULL,
+        end_date VARCHAR(255) NULL,
+        status VARCHAR(255) NOT NULL
+      );
+    `;
+
+    console.log(`Created "exchanges" table`);
+
+    // Insert data into the "exchanges" table
+    const insertedexchanges = await Promise.all(
+      exchanges.map(async (user) => {
+        return client.sql`
+        INSERT INTO exchanges (id, exchange_id, qi_id, start_date, end_date, status)
+        VALUES (${user.id}, ${user.exchange_id},${user.qi_id},${user.start_date},${user.end_date}, ${user.status})
+        ON CONFLICT (id) DO NOTHING;
+      `;
+      }),
+    );
+
+    console.log(`Seeded ${insertedexchanges.length} exchanges`);
+
+    return {
+      createTable,
+      exchanges: insertedexchanges,
+    };
+  } catch (error) {
+    console.error('Error seeding exchanges:', error);
+    throw error;
+  }
+}
+
+async function seedexchangeUser(client) {
+  try {
+    // Create the "exchangeUser" table if it doesn't exist
+    const createTable = await client.sql`
+      CREATE TABLE IF NOT EXISTS exchangeUser (
+        exchange_id VARCHAR(255) NOT NULL,
+        qi_id VARCHAR(255) NOT NULL,
+        user_id VARCHAR(255) NOT NULL
+      );
+    `;
+
+    console.log(`Created "exchangeUser" table`);
+
+    // Insert data into the "exchangeUser" table
+    const insertedexchangeUser = await Promise.all(
+      exchangeUser.map(async (user) => {
+        return client.sql`
+        INSERT INTO exchangeUser (exchange_id, qi_id, user_id)
+        VALUES (${user.exchange_id},${user.qi_id},${user.user_id})
+        ON CONFLICT (id) DO NOTHING;
+      `;
+      }),
+    );
+
+    console.log(`Seeded ${insertedexchangeUser.length} exchangeUser`);
+
+    return {
+      createTable,
+      exchangeUser: insertedexchangeUser,
+    };
+  } catch (error) {
+    console.error('Error seeding exchangeUser:', error);
     throw error;
   }
 }
@@ -166,6 +248,8 @@ async function main() {
   await seedUsers(client);
   await seedCustomers(client);
   await seedInvoices(client);
+  //await seedexchanges(client);
+  await seedexchangeUser(client);
   await seedRevenue(client);
 
   await client.end();

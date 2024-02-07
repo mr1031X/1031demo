@@ -2,10 +2,134 @@
 // https://nextjs.org/learn/dashboard-app/fetching-data
 const users = [
   {
-    id: '410544b2-4001-4271-9855-fec4b6a6442a',
-    name: 'User',
-    email: 'user@nextmail.com',
+    id: '410544b2-4001-4277-9855-fec4b6a6444a',
+    name: 'Wilkinson Egwu',
+    phone: '615-354-1234',
+    company: '1031X',
+    role: 'QI',
+    email: 'wilkinson@deferally.ai',
     password: '123456',
+    qi_id: '1001'
+  },
+  {
+    id: '410544b2-4001-4271-9844-fec4b6a6222b',
+    name: 'Chris Smalley',
+    phone: '615-354-1234',
+    company: '1031X',
+    role: 'QI',
+    email: 'chris@deferally.ai',
+    password: '123456',
+    qi_id: '1001'
+  },
+  {
+    id: '410544b2-4662-4271-9855-fec4b6a6333c',
+    name: 'Garrett McGiffert',
+    phone: '615-354-1234',
+    company: '1031X',
+    role: 'QI',
+    email: 'garrett@deferally.ai',
+    password: '123456',
+    qi_id: '1001'
+  },
+  {
+    id: '410544b2-4662-4271-9855-fec4b6a6777d',
+    name: 'Testy McTesterson',
+    phone: '615-354-1234',
+    company: '1031X',
+    role: 'QI',
+    email: 'test@test.com',
+    password: '123456',
+    qi_id: '1001'
+  },
+];
+
+const exchanges = [
+  {
+    id: '660544b2-4332-4271-9855-fec4b6a6777d',
+    exchange_id: '10001',
+    qi_id: '1001',
+    start_date: '2023-11-22',
+    end_date: '2023-12-26',
+    status: 'completed'
+  },
+  {
+    id: '660544b2-4662-4266-9889-fec4b6a6777b',
+    exchange_id: '10002',
+    qi_id: '1001',
+    start_date: '2023-12-12',
+    end_date: '2024-01-08',
+    status: 'completed'
+  },
+  {
+    id: '660544b2-4562-4271-9855-fec4b6a6777d',
+    exchange_id: '10003',
+    qi_id: '1001',
+    start_date: '2024-01-12',
+    end_date: '',
+    status: 'active'
+  },
+];
+
+const exchangeUser = [
+  {
+    user_id: '410544b2-4001-4277-9855-fec4b6a6444a',
+    qi_id: '1001',
+    exchange_id: '10001'
+  },
+  {
+    user_id: '410544b2-4001-4271-9844-fec4b6a6222b',
+    qi_id: '1001',
+    exchange_id: '10001'
+  },
+  {
+    user_id: '410544b2-4662-4271-9855-fec4b6a6333c',
+    qi_id: '1001',
+    exchange_id: '10001'
+  },
+  {
+    user_id: '410544b2-4662-4271-9855-fec4b6a6777d',
+    qi_id: '1001',
+    exchange_id: '10001'
+  },
+  {
+    user_id: '410544b2-4001-4277-9855-fec4b6a6444a',
+    qi_id: '1001',
+    exchange_id: '10002'
+  },
+  {
+    user_id: '410544b2-4001-4271-9844-fec4b6a6222b',
+    qi_id: '1001',
+    exchange_id: '10002'
+  },
+  {
+    user_id: '410544b2-4662-4271-9855-fec4b6a6333c',
+    qi_id: '1001',
+    exchange_id: '10002'
+  },
+  {
+    user_id: '410544b2-4662-4271-9855-fec4b6a6777d',
+    qi_id: '1001',
+    exchange_id: '10002'
+  },
+  {
+    user_id: '410544b2-4001-4277-9855-fec4b6a6444a',
+    qi_id: '1001',
+    exchange_id: '10003'
+  },
+  {
+    user_id: '410544b2-4001-4271-9844-fec4b6a6222b',
+    qi_id: '1001',
+    exchange_id: '10003'
+  },
+  {
+    user_id: '410544b2-4662-4271-9855-fec4b6a6333c',
+    qi_id: '1001',
+    exchange_id: '10003'
+  },
+  {
+    user_id: '410544b2-4662-4271-9855-fec4b6a6777d',
+    qi_id: '1001',
+    exchange_id: '10003'
   },
 ];
 
@@ -183,6 +307,8 @@ const revenue = [
 module.exports = {
   users,
   customers,
+  exchanges,
+  exchangeUser,
   invoices,
   revenue,
 };
