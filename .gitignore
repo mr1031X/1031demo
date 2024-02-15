@@ -34,3 +34,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# demo files
+/app/dashboard/demo
+/app/lib/demo
+/app/ui/demo

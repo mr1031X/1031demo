@@ -7,6 +7,8 @@ export default function DeferAllyLogo() {
       className={`${roboto.className} flex flex-row items-center leading-none text-white`}
     >
       <Image
+        priority={true}
+        placeholder='empty'
         src="/white-logo.png"
         alt="DeferAlly Logo"
         width={150}

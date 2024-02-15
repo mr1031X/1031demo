@@ -111,6 +111,13 @@ export type CustomerField = {
   name: string;
 };
 
+export type ExchangeField = {
+  exchange_id: string;
+  start_date: string;
+  end_date: string;
+  status: string;
+};
+
 export type InvoiceForm = {
   id: string;
   customer_id: string;
