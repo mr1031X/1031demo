@@ -71,7 +71,7 @@ export default async function DocumentUploadForm() {
                         <div className="flex-1 items-start justify-start">
                             <h3 className="font-semibold mb-1">Closing statement</h3>
                             <p className="text-sm mb-2">
-                                The closing statement for Property A's sale, indicating the net proceeds from the sale.
+                                The closing statement for Property A&apos;s sale, indicating the net proceeds from the sale.
                             </p>
                         </div>
                     </div>
